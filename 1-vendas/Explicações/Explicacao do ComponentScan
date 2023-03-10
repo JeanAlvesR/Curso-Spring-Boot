@@ -1,0 +1,18 @@
+Essa anotação é comumente usada na classe de configuração principal da aplicação, que geralmente é a classe que contém o método main(). O @ComponentScan instrui o Spring a procurar por componentes em um pacote específico (e seus subpacotes) e carregá-los automaticamente no contêiner do Spring.
+
+Por exemplo, suponha que a classe de configuração principal da sua aplicação esteja no pacote com.example.myapp, e você tem outras classes anotadas com @Component nos pacotes com.example.myapp.controller, com.example.myapp.service e com.example.myapp.repository. Usando o @ComponentScan, você pode instruir o Spring a procurar por componentes nesses pacotes e carregá-los automaticamente:
+
+
+@SpringBootApplication
+@ComponentScan(basePackages = {"com.example.myapp.controller", "com.example.myapp.service", "com.example.myapp.repository"})
+public class MyAppApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(MyAppApplication.class, args);
+    }
+}
+Ao executar a aplicação, o Spring irá procurar por classes anotadas com @Component, @Service, @Repository, etc. nos pacotes com.example.myapp.controller, com.example.myapp.service e com.example.myapp.repository, e as registrará no contêiner do Spring, permitindo que outras classes as injetem como dependências.
+
+O @ComponentScan é uma forma muito útil e poderosa de configurar o Spring Boot para carregar automaticamente todos os componentes da sua aplicação, evitando a necessidade de configurar manualmente cada componente em seu arquivo de configuração.
+
+
+

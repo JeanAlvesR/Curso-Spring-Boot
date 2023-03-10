@@ -1,0 +1,7 @@
+Em termos simples, um bean no contexto do Spring Framework e do Spring Boot é um objeto gerenciado pelo contêiner de inversão de controle (IoC). O Spring é uma estrutura de desenvolvimento de aplicativos que utiliza a inversão de controle para gerenciar as dependências e o ciclo de vida dos objetos em uma aplicação.
+
+Em outras palavras, em vez de criar e gerenciar seus próprios objetos e suas dependências manualmente em todo o seu aplicativo, você pode deixar o Spring Boot fazer isso por você. Para isso, basta marcar suas classes com anotações como @Component, @Service ou @Repository, por exemplo. O Spring Boot identificará essas classes marcadas como componentes gerenciados e as registrará no contêiner de IoC.
+
+Por meio do contêiner de IoC, você pode acessar esses objetos em qualquer lugar em seu aplicativo, sem se preocupar em criá-los ou mantê-los. Além disso, o Spring Boot fornece várias outras anotações que podem ser usadas para configurar, inicializar e personalizar esses objetos gerenciados, como @Autowired, @Value, @Qualifier, @PostConstruct, @PreDestroy e outras.
+
+Em resumo, o bean é um objeto gerenciado pelo Spring Boot, que é criado, configurado e mantido pelo contêiner de IoC e pode ser acessado e usado em qualquer parte do seu aplicativo. Isso ajuda a tornar seu código mais modular, fácil de testar e mais escalável.
