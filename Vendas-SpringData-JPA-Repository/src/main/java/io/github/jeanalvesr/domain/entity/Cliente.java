@@ -2,6 +2,8 @@ package io.github.jeanalvesr.domain.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 //@Table(name = "tb_cliente", schema = "vendas" ) -> Utilizar quando a tabela persistida tiver o nome diferente da entidade. Caso não esteja no default, dá para especificar o schema.
 public class Cliente {
@@ -12,6 +14,9 @@ public class Cliente {
     private Integer id;
     @Column(name= "nome", length = 100)
     private String nome; //Quando utiliza @Entity, já é sub-entendido que os seus atributos são colunas.
+
+    @OneToMany(mappedBy = "cliente" ) //usa o nome que está dentro da classe Pedido
+    private Set <Pedido> pedidos;
 
     public Cliente() {
     }
@@ -41,6 +46,14 @@ public class Cliente {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Set<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(Set<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
 
     @Override
