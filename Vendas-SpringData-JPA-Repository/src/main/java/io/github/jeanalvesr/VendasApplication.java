@@ -18,13 +18,17 @@ public class VendasApplication {
     public CommandLineRunner init(@Autowired Clientes clientes){
         return args -> {
             System.out.println("Salvando clientes");
-            clientes.save(new Cliente("Eren"));
-            clientes.save(new Cliente("Outro Cliente"));
+            clientes.save(new Cliente("Eren Yager"));
+            clientes.save(new Cliente("Outro Cliente a"));
+            clientes.save(new Cliente("Goku"));
 
-            List<Cliente> todosClientes = clientes.findAll();
-            todosClientes.forEach(System.out::println);
+            clientes.findAll().forEach(System.out::println);
 
             System.out.println("Testando se existe o Eren: "+clientes.existsByNome("Eren") );
+
+
+            clientes.pesquisaNomesComLetraA().forEach(System.out::println);
+
         };
     }
 
