@@ -15,7 +15,7 @@ public class Cliente {
     @Column(name= "nome", length = 100)
     private String nome; //Quando utiliza @Entity, já é sub-entendido que os seus atributos são colunas.
 
-    @OneToMany(mappedBy = "cliente" ) //usa o nome que está dentro da classe Pedido
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY ) //usa o nome que está dentro da classe Pedido
     private Set <Pedido> pedidos;
 
     public Cliente() {
@@ -29,8 +29,6 @@ public class Cliente {
     public Cliente(String nome) {
         this.nome = nome;
     }
-
-
 
     public Integer getId() {
         return id;

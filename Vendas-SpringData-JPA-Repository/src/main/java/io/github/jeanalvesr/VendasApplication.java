@@ -1,8 +1,10 @@
 package io.github.jeanalvesr;
 
 import io.github.jeanalvesr.domain.entity.Cliente;
+import io.github.jeanalvesr.domain.entity.Pedido;
 import io.github.jeanalvesr.domain.entity.Produto;
 import io.github.jeanalvesr.domain.repository.Clientes;
+import io.github.jeanalvesr.domain.repository.Pedidos;
 import io.github.jeanalvesr.domain.repository.Produtos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -12,21 +14,37 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 @SpringBootApplication
 public class VendasApplication {
 
     @Bean
-    public CommandLineRunner init(@Autowired Clientes clientes, Produtos produtos){
+    public CommandLineRunner init(
+            @Autowired Clientes clientes,
+            @Autowired Pedidos pedidos
+    ) {
         return args -> {
+            System.out.println("Salvando clientes");
+            Cliente fulano = new Cliente("Fulano");
+            clientes.save(fulano);
 
-            System.out.println("Salvando Produto");
+            Pedido p = new Pedido();
+            p.setCliente(fulano);
+            p.setDataPedido(LocalDate.now());
+            p.setTotal(BigDecimal.valueOf(100));
 
-            produtos.save(new Produto("Camisa do Manchester United",
-                    "Linda camisa do manchester united"));
+            pedidos.save(p);
 
-            produtos.findAll().forEach(System.out::println);
+//            Cliente cliente = clientes.findClienteFetchPedidos(fulano.getId());
+//            System.out.println(cliente);
+//            System.out.println(cliente.getPedidos());
+
+            pedidos.findByCliente(fulano).forEach(System.out::println);
+
+
+
         };
     }
 
