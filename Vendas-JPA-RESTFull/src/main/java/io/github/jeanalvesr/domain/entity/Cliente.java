@@ -16,6 +16,9 @@ public class Cliente {
     @Column(name= "nome", length = 100)
     private String nome; //Quando utiliza @Entity, já é sub-entendido que os seus atributos são colunas.
 
+    @Column(name = "cpf",length = 11)
+    private String cpf;
+
     @JsonIgnore //Quando uma requisição get vir, ele não retorna os pedidos
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY ) //usa o nome que está dentro da classe Pedido
     private Set <Pedido> pedidos;
@@ -26,6 +29,20 @@ public class Cliente {
     public Cliente(Integer id, String nome) {
         this.id = id;
         this.nome = nome;
+    }
+
+    public Cliente(Integer id, String nome, String cpf) {
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public Cliente(String nome) {
