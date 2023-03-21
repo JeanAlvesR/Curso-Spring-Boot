@@ -1,5 +1,6 @@
 package io.github.jeanalvesr.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -15,6 +16,7 @@ public class Cliente {
     @Column(name= "nome", length = 100)
     private String nome; //Quando utiliza @Entity, já é sub-entendido que os seus atributos são colunas.
 
+    @JsonIgnore //Quando uma requisição get vir, ele não retorna os pedidos
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY ) //usa o nome que está dentro da classe Pedido
     private Set <Pedido> pedidos;
 
