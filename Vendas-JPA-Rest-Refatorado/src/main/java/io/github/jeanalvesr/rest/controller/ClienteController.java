@@ -62,7 +62,7 @@ public class ClienteController {
                 map(clienteExistente -> {
                     c.setId(clienteExistente.getId());
                     clientes.save(c);
-                    return ResponseEntity.noContent().build();
+                    return Void.TYPE;
                 }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
     }
